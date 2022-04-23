@@ -25,6 +25,7 @@ def team_suggest_purchase():
 def play_analyze():
     #analyze the opponent's team and best categories, suggest weak categories and the guys to put up to get there
     #return a win % guess
+    return
 
 def play_swap():
     #analyze current team, account for injury, and suggest who to sub in

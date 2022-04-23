@@ -8,34 +8,9 @@ def start():
     big_frame = ttk.Frame(root)
     big_frame.pack(fill="both", expand=True)
     root.title('BensonAssKicker')
-
     # Set the initial theme
     root.tk.call("source", "sun-valley.tcl")
     root.tk.call("set_theme", "dark")
-    
-    def move_window(event):
-        root.geometry('+{0}+{1}'.format(event.x_root, event.y_root))
-
-    def create_titlebar():
-        root.overrideredirect(True) # turns off title bar, geometry
-        root.geometry('400x100+200+200') # set new geometry
-
-        # make a frame for the title bar
-        title_bar = tk.Frame(root, bg='white', relief='raised', bd=2)
-
-        # put a close button on the title bar
-        close_button = tk.Button(title_bar, text='X', command=root.destroy)
-
-        # a canvas for the main area of the window
-        window = tk.Canvas(root, bg='black')
-
-        # pack the widgets
-        title_bar.pack(expand=1, fill='x')
-        close_button.pack(side='right')
-        window.pack(expand=1, fill='both')
-
-        # bind title bar motion to the move window function
-        title_bar.bind('<B1-Motion>', move_window)
 
     def change_theme():
         # NOTE: The theme's real name is sun-valley-mode
@@ -46,18 +21,41 @@ def start():
             # Set light theme
             root.tk.call("set_theme", "dark")
 
-    # Remember, you have to use ttk widgets
+    def donothing():
+        print('Command not implemented')
 
-    button = ttk.Button(big_frame, text="change theme!", command=change_theme)
-    button.pack()
-
-    #TopMenu
-    #menu1_master = tk.Tk()
-    variable = tk.StringVar(root)
-    variable.set("one") # default value
-    menu1 = ttk.OptionMenu(root, variable, "one", "two", "three")
-    menu1.pack()
-
+    menubar = tk.Menu(root)
+    #file menu
+    filemenu = tk.Menu(menubar, tearoff=0)
+    filemenu.add_command(label="New", command=donothing)
+    filemenu.add_command(label="Open", command=donothing)
+    filemenu.add_command(label="Save", command=donothing)
+    filemenu.add_command(label="Save as...", command=donothing)
+    filemenu.add_command(label="Close", command=donothing)
+    filemenu.add_separator()
+    filemenu.add_command(label="Exit", command=root.quit)
+    menubar.add_cascade(label="File", menu=filemenu)
+    #edit menu
+    editmenu = tk.Menu(menubar, tearoff=0)
+    editmenu.add_command(label="Undo", command=donothing)
+    editmenu.add_separator()
+    editmenu.add_command(label="Cut", command=donothing)
+    editmenu.add_command(label="Copy", command=donothing)
+    editmenu.add_command(label="Paste", command=donothing)
+    editmenu.add_command(label="Delete", command=donothing)
+    editmenu.add_command(label="Select All", command=donothing)
+    menubar.add_cascade(label="Edit", menu=editmenu)
+    #options Menu
+    optionmenu = tk.Menu(menubar,tearoff=0)
+    optionmenu.add_command(label="Change Theme",command=change_theme)
+    menubar.add_cascade(label="Options",menu=optionmenu)
+    #help menu
+    helpmenu = tk.Menu(menubar, tearoff=0)
+    helpmenu.add_command(label="About...", command=donothing)
+    menubar.add_cascade(label="Help", menu=helpmenu)
+    #add menu to root
+    root.config(menu=menubar)
+    ## start
     root.mainloop()
 
 if __name__ == '__main__':

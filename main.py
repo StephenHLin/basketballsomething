@@ -5,6 +5,14 @@ from operator import itemgetter, attrgetter
 file_name = 'data/2021-2022.csv'
 sort_category = ['PLAYER', 'POS', 'TEAM', 'GP', 'MPG', 'FGM', 'FG%', 'FTM', 'FT%', '3PM', '3P%', 'PTS', 'DREB', 'OREB', 'TREB', 'AST', 'STL', 'BLK', 'TO', 'DD', 'A/TO']
 
+def load_session():
+    #load the session, all its players and teams
+    return
+
+def save_session():
+    #load the session, all its players and teams
+    return
+
 def start():
     RAWdata = readdata(file_name) #load data
     sortby(sort_category[-5],RAWdata) #testing funct
